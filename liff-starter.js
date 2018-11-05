@@ -1,6 +1,7 @@
 window.onload = function(e) {
 
-	var lineId = null;
+    var lineId = null;
+    var items = null;
 
     // Get LINE ID By Launching In LINE LIFF
 	liff.init(function(data) {
@@ -23,14 +24,17 @@ window.onload = function(e) {
 
 	// Execute If Successfully Connected To Lambda
 	}).done(function(data, textStatus, jqXHR) {
+        
         console.log("成功:" + jqXHR.status);
-        console.log(JSON.stringify(data.body));
-        alert("successfully connected to lambda");
-
+        console.log(JSON.stringify(data.Items));
+        console.log(JSON.stringify(data.Items[0].created)); 
+        items = data.Items;
 
     // Execute If Connection Failed
 	}).fail(function(jqXHR, textStatus, errorThrown) {
-		alert("エラーが発生したもん。\n時間をおいてまた試して欲しいもん。");
+        
+        alert("エラーが発生したもん。\n時間をおいてまた試して欲しいもん。");
+
     });
     
 
@@ -38,15 +42,28 @@ window.onload = function(e) {
     var chartData = generatechartData();
     
     function generatechartData() {
-        var chartData = [
-            {date: '2018/10/27',max: 120,min: 56},
-            {date: '2018/10/28',max: 111,min: 78},
-            {date: '2018/10/29',max: 127,min: 80},
-            {date: '2018/10/30',max: 130,min: 78},
-            {date: '2018/10/31',max: 108,min: 98},
-            {date: '2018/11/01',max: 121,min: 55},
-            {date: '2018/11/02',max: 116,min: 78},
-        ];
+
+        for (var i = 0; i < data.Items.length; i++){
+
+            let chartComp = {
+                date:   JSON.stringify(items[i].created),
+                max:    JSON.stringify(items[i].max),
+                min:    JSON.stringify(items[i].min)
+            };
+            console.log("created" + JSON.stringify(items[i].created));
+
+            chartData.push(chartComp);
+        }
+
+        // var chartData = [
+        //     {date: '2018/10/27',max: 120,min: 56},
+        //     {date: '2018/10/28',max: 111,min: 78},
+        //     {date: '2018/10/29',max: 127,min: 80},
+        //     {date: '2018/10/30',max: 130,min: 78},
+        //     {date: '2018/10/31',max: 108,min: 98},
+        //     {date: '2018/11/01',max: 121,min: 55},
+        //     {date: '2018/11/02',max: 116,min: 78},
+        // ];
         return chartData;
     }
     
