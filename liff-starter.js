@@ -64,8 +64,7 @@ window.onload = function (e) {
                 "bulletBorderColor": "#FFFFFF",
                 "hideBulletsCount": 50,
                 "lineThickness": 4,
-                "lineColor": "#fdd400",
-                //"negativeLineColor": "#67b7dc",
+                "lineColor": "#ff0000",
                 "valueField": "max"
             },
             {
@@ -77,9 +76,7 @@ window.onload = function (e) {
                 "bulletBorderColor": "#FFFFFF",
                 "hideBulletsCount": 50,
                 "lineThickness": 4,
-                "lineColor": "#fdd400",
-                // TO DO
-                //"negativeLineColor": "#67b7dc",
+                "lineColor": "#4169e1",
                 "valueField": "min"
             }],
             "chartScrollbar": {
