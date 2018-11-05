@@ -45,11 +45,12 @@ window.onload = function (e) {
 
 
         var chart = AmCharts.makeChart("chartdiv", {
-            "theme": "dark",
+            "theme": "none",
             "type": "serial",
             "marginRight": 80,
             "autoMarginOffset": 20,
             "marginTop": 20,
+            "dataDateFormat": "YYYY/MM/DD",
             "dataProvider": json,
             "valueAxes": [{
                 "id": "v1",
@@ -57,7 +58,7 @@ window.onload = function (e) {
             }],
             "graphs": [{
                 // Graph Option For Max-Blood-Presssure
-                "useNegativeColorIfDown": true,
+                "useNegativeColorIfDown": false,
                 "balloonText": "[[category]]<br><b>value: [[value]]</b>",
                 "bullet": "round",
                 "bulletBorderAlpha": 1,
@@ -69,7 +70,7 @@ window.onload = function (e) {
             },
             {
                 // Graph Option For Min-Blood-Pressure
-                "useNegativeColorIfDown": true,
+                "useNegativeColorIfDown": false,
                 "balloonText": "[[category]]<br><b>value: [[value]]</b>",
                 "bullet": "round",
                 "bulletBorderAlpha": 1,
@@ -93,7 +94,7 @@ window.onload = function (e) {
             // Setting Around Data
             "categoryField": "created",
             "categoryAxis": {
-                "parseDates": true,
+                "parseDates": false,
                 "axisAlpha": 0,
                 "minHorizontalGap": 60
             },
